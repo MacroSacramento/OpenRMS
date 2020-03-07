@@ -2,7 +2,8 @@ import axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import { Switch, Route, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+
 
 export default class AdminEmployees extends Component {
 
@@ -14,7 +15,7 @@ export default class AdminEmployees extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/admin/employees/')
+    axios.get(process.env.REACT_APP_API_SERVER + `/api/admin/employees/`)
       .then((res) => {
         this.setState({ employees: res.data })
       })
