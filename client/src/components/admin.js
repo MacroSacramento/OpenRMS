@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Navbar, Nav, Form } from 'react-bootstrap'
 import { Switch, Route, NavLink } from 'react-router-dom'
-import { Navbar, Nav, Form } from 'react-bootstrap'
 import Feather from 'feather-icons'
 import '../styles/admin/admin.scss'
 
 import AdminHome from './admin/home'
 import AdminEmployees from './admin/employees'
+import CreateEmployee from './admin/employees_create'
 
 export default class Admin extends Component {
 
@@ -47,7 +47,7 @@ export default class Admin extends Component {
               <Switch>
                 <Route exact path={path} component={AdminHome} />
                 <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees {...this.props}/>} />
-                <Route path={`${path}/employees/create`} />
+                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props}/>} />
                 <Route path={`${path}/employees/edit/:id`} />
               </Switch>
             </main>

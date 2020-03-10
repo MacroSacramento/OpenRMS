@@ -29,13 +29,14 @@ export default class AdminEmployees extends Component {
     const { url } = this.props.match
     const employeeList = this.state.employees.map((employee) => {
       return <tr key={employee._id} id={employee._id}>
-        <td>{employee.name}</td>
         <td>{employee.username}</td>
+        <td>{employee.name}</td>
         <td>{employee.address}</td>
         <td>{new Date(employee.hireDate).toLocaleDateString()}</td>
         <td className="text-center">{employee.isManager ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center">{employee.isAdmin ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center">{employee.isActive ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
+        <td className="text-center"><span data-feather="edit"></span></td>
       </tr>
     })
 
@@ -44,8 +45,8 @@ export default class AdminEmployees extends Component {
         <div className="w-100">
           <h2 className="h2 d-inline-block">Employees</h2>
           <NavLink to={`${ url }/employees/create`}>
-            <Button type="button" size="sm" variant="dark" className="float-right align-middle">
-              <span className="feather-16" data-feather="plus"></span><span className="pl-1">Add Employee</span>
+            <Button type="button" size="sm" variant="dark" className="float-right mt-1 align-middle">
+              <span className="feather-16" data-feather="user-plus"></span><span className="pl-1">Add Employee</span>
             </Button>
           </NavLink>
         </div>
@@ -59,6 +60,7 @@ export default class AdminEmployees extends Component {
               <th className="text-center">Manager</th>
               <th className="text-center">Admin</th>
               <th className="text-center">Active</th>
+              <th className="text-center">Edit</th>
             </tr>
           </thead>
           <tbody>

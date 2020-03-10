@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Admin from './components/admin'
+import Admin from './components/admin.js'
 
 function App() {
   return (
