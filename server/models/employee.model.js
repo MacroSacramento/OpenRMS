@@ -21,6 +21,10 @@ const employeeSchema = mongoose.Schema({
     type: Date,
     required: true
   },
+  email: {
+    type: String,
+    required: true
+  },
   isManager: Boolean,
   isAdmin: Boolean,
   isActive: Boolean,

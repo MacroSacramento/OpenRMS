@@ -24,6 +24,7 @@ router.route('/employees/')
   .post((req, res) => {
     const username = req.body.username
     const name = req.body.name
+    const email = req.body.email
     const phoneNumber = req.body.phoneNumber
     const address = req.body.address
     const hireDate = new Date()
@@ -34,6 +35,7 @@ router.route('/employees/')
     const employee = new Employee({
       username,
       name,
+      email,
       phoneNumber,
       address,
       hireDate,

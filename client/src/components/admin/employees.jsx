@@ -29,8 +29,9 @@ export default class AdminEmployees extends Component {
     const { url } = this.props.match
     const employeeList = this.state.employees.map((employee) => {
       return <tr key={employee._id} id={employee._id}>
-        <td>{employee.username}</td>
         <td>{employee.name}</td>
+        <td>{employee.username}</td>
+        <td>{employee.email}</td>
         <td>{employee.address}</td>
         <td>{new Date(employee.hireDate).toLocaleDateString()}</td>
         <td className="text-center">{employee.isManager ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
@@ -53,8 +54,9 @@ export default class AdminEmployees extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th>Username</th>
               <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
               <th>Address</th>
               <th>Hire Date</th>
               <th className="text-center">Manager</th>
