@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
 
 export default class CreateEmployee extends Component {
 
@@ -55,7 +54,10 @@ export default class CreateEmployee extends Component {
       isActive: this.state.formControlActive
     })
       .then((res) => {
-        this.props.history.push('/admin/employees')
+        this.props.history.push({
+          pathname: '/admin/employees',
+          state: { showSuccessAlert: true }
+        })
       })
     event.preventDefault()
   }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Alert, Button } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
 
@@ -25,6 +25,24 @@ export default class AdminEmployees extends Component {
     Feather.replace()
   }
 
+  successAlert() {
+    if (this.props.location.state.showSuccessAlert === true) {
+      return (
+        <Alert variant="success" onClose={ () => this.onSuccessAlertClose() } dismissible>
+          <Alert.Heading>You have successfully added a new Employee</Alert.Heading>
+        </Alert>
+      )
+    }
+  }
+
+  onSuccessAlertClose() {
+    this.props.history.replace({
+      pathname: '/admin/employees',
+      state: { showSuccessAlert: false }
+    })
+    console.log(`clicked \n ${this.props.location.state.showSuccessAlert}`)
+  }
+
   render() {
     const { url } = this.props.match
     const employeeList = this.state.employees.map((employee) => {
@@ -37,15 +55,16 @@ export default class AdminEmployees extends Component {
         <td className="text-center">{employee.isManager ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center">{employee.isAdmin ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center">{employee.isActive ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
-        <td className="text-center"><span data-feather="edit"></span></td>
+        <td className="text-center"><NavLink to={`${url}/employees/edit/${employee._id}`}><span data-feather="edit"></span></NavLink></td>
       </tr>
     })
 
     return (
       <>
+        {this.successAlert()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Employees</h2>
-          <NavLink to={`${ url }/employees/create`}>
+          <NavLink to={`${url}/employees/create`}>
             <Button type="button" size="sm" variant="dark" className="float-right mt-1 align-middle">
               <span className="feather-16" data-feather="user-plus"></span><span className="pl-1">Add Employee</span>
             </Button>
