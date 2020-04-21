@@ -13,12 +13,20 @@ import EditEmployee from './admin/employees_edit'
 
 export default class Admin extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      showEmployeeAddSuccess: false
+    }
+    this.handleEmployeeSuccess = this.handleEmployeeSuccess.bind(this)
+  }
+
+  handleEmployeeSuccess(val){
+    this.setState({ showEmployeeAddSuccess: val });
+  }
+
   componentDidMount() {
     Feather.replace()
-    this.props.history.replace({
-      pathname: '/admin/employees',
-      state: { showSuccessAlert: false }
-    })
   }
 
   render() {
@@ -45,8 +53,12 @@ export default class Admin extends Component {
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
               <Switch>
                 <Route exact path={path} component={AdminHome} />
-                <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees {...this.props} />} />
-                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} />} />
+                <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees 
+                  {...this.props}  
+                  showEmployeeAddSuccess={this.state.showEmployeeAddSuccess} 
+                  changeEmployeeSuccess={this.handleEmployeeSuccess}/>} 
+                />
+                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess}/>} />
                 <Route path={`${path}/employees/edit/:id`} render={(props) => <EditEmployee {...this.props} />} />
               </Switch>
             </main>

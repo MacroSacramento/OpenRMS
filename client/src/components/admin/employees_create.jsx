@@ -19,10 +19,7 @@ export default class CreateEmployee extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-  }
-
-  componentDidMount() {
-
+    console.log(this.props)
   }
 
   handleChange(event) {
@@ -43,17 +40,19 @@ export default class CreateEmployee extends Component {
 
   handleSubmit(event) {
     console.log(this.state)
-    axios.post(process.env.REACT_APP_API_SERVER + '/api/admin/employees', {
+    axios.post(`/api/admin/employees`, {
       username: this.state.formControlUsername,
       name: this.state.formControlName,
       password: this.state.formControlPassword,
       email: this.state.formControlEmail,
+      phoneNumber: this.state.formControlTel,
       address: this.state.formControlAddress,
       isManager: this.state.formControlManager,
       isAdmin: this.state.formControlAdmin,
       isActive: this.state.formControlActive
     })
       .then((res) => {
+        this.props.changeEmployeeSuccess(true)
         this.props.history.push({
           pathname: '/admin/employees',
           state: { showSuccessAlert: true }

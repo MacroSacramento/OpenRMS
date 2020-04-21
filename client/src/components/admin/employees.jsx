@@ -10,13 +10,16 @@ export default class AdminEmployees extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      employees: []
+      employees: [],
     }
+    console.log(this.props)
+    console.log(this.state)
+    this.handleSuccessClose = this.handleSuccessClose.bind(this)
   }
 
   componentDidMount() {
-    axios.get(process.env.REACT_APP_API_SERVER + `/api/admin/employees/`)
-      .then((res) => {
+    axios.get(`/api/admin/employees/`)
+      .then(res => {
         this.setState({ employees: res.data })
       })
   }
@@ -25,10 +28,14 @@ export default class AdminEmployees extends Component {
     Feather.replace()
   }
 
+  handleSuccessClose(){
+    this.props.changeEmployeeSuccess(false)
+  }
+
   successAlert() {
-    if (this.props.location.state.showSuccessAlert === true) {
+    if (this.props.showEmployeeAddSuccess === true) {
       return (
-        <Alert variant="success" onClose={ () => this.onSuccessAlertClose() } dismissible>
+        <Alert variant="success" onClose={ () => this.handleSuccessClose() } dismissible>
           <Alert.Heading>You have successfully added a new Employee</Alert.Heading>
         </Alert>
       )

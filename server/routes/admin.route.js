@@ -48,9 +48,15 @@ router.route('/employees/')
       .catch(err => res.status(400).json('Error: ' + err))
   })
   .get((req, res) => {
-    Employee.find({ isActive: true })
-      .then(employees => res.send(employees))
-      .catch(err => res.status(400).json(`Error: ${err}`))
+    if (req.query.ID) {
+      Employee.findById(req.query.ID)
+        .then(employee => res.send(employee))
+        .catch(err => res.status(400).json(`Error: ${err}`))
+    } else {
+      Employee.find({ isActive: true })
+        .then(employees => res.send(employees))
+        .catch(err => res.status(400).json(`Error: ${err}`))
+    }
   })
   .patch((req, res) => {
     Employee.find
