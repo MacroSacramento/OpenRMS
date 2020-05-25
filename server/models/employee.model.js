@@ -29,6 +29,7 @@ const employeeSchema = mongoose.Schema({
   isAdmin: Boolean,
   isActive: Boolean,
 })
+
 employeeSchema.plugin(passportLocalMongoose)
 
 const Employee = mongoose.model('Employee', employeeSchema)

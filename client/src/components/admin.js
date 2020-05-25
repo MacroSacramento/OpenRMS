@@ -13,16 +13,24 @@ import EditEmployee from './admin/employees_edit'
 
 export default class Admin extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      showEmployeeAddSuccess: false
+      employeeAlert: {
+        show: false,
+        text: ''
+      }
     }
     this.handleEmployeeSuccess = this.handleEmployeeSuccess.bind(this)
   }
 
-  handleEmployeeSuccess(val){
-    this.setState({ showEmployeeAddSuccess: val });
+  handleEmployeeSuccess(show, text = "") {
+    this.setState({
+      employeeAlert: {
+        show: show,
+        text: text
+      }
+    });
   }
 
   componentDidMount() {
@@ -53,13 +61,13 @@ export default class Admin extends Component {
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
               <Switch>
                 <Route exact path={path} component={AdminHome} />
-                <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees 
-                  {...this.props}  
-                  showEmployeeAddSuccess={this.state.showEmployeeAddSuccess} 
-                  changeEmployeeSuccess={this.handleEmployeeSuccess}/>} 
+                <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees
+                  {...this.props}
+                  employeeAlert={this.state.employeeAlert}
+                  changeEmployeeSuccess={this.handleEmployeeSuccess} />}
                 />
-                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess}/>} />
-                <Route path={`${path}/employees/edit/:id`} render={(props) => <EditEmployee {...this.props} />} />
+                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
+                <Route path={`${path}/employees/edit/:id`} render={(props) => <EditEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
               </Switch>
             </main>
           </Row>

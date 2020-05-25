@@ -5,7 +5,7 @@ export default class AdminNav extends Component {
   render() {
     return (
       <Navbar className="flex-md-nowrap p-0 shadow" expand="false" variant="dark" sticky="top" fixed="top" bg="dark">
-        <Navbar.Brand className="col-sm-3 col-md-2 mr-0" href="#">OpenRMS</Navbar.Brand>
+        <Navbar.Brand className="col-sm-3 col-md-2 mr-0" href="/admin">OpenRMS</Navbar.Brand>
         <Form.Control type="text" className="form-control-dark w-100" placeholder="Search" />
         <Nav className="px-3">
           <Nav.Item className="text-nowrap">

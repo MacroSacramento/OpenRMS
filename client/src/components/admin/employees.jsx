@@ -12,8 +12,6 @@ export default class AdminEmployees extends Component {
     this.state = {
       employees: [],
     }
-    console.log(this.props)
-    console.log(this.state)
     this.handleSuccessClose = this.handleSuccessClose.bind(this)
   }
 
@@ -33,10 +31,10 @@ export default class AdminEmployees extends Component {
   }
 
   successAlert() {
-    if (this.props.showEmployeeAddSuccess === true) {
+    if (this.props.employeeAlert.show === true) {
       return (
         <Alert variant="success" onClose={ () => this.handleSuccessClose() } dismissible>
-          <Alert.Heading>You have successfully added a new Employee</Alert.Heading>
+          <Alert.Heading>{this.props.employeeAlert.text}</Alert.Heading>
         </Alert>
       )
     }

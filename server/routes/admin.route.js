@@ -30,7 +30,7 @@ router.route('/employees/')
     const hireDate = new Date()
     const isManager = req.body.isManager
     const isAdmin = req.body.isAdmin
-    const isActive = true
+    const isActive = req.body.isActive
 
     const employee = new Employee({
       username,
@@ -48,8 +48,8 @@ router.route('/employees/')
       .catch(err => res.status(400).json('Error: ' + err))
   })
   .get((req, res) => {
-    if (req.query.ID) {
-      Employee.findById(req.query.ID)
+    if (req.query._id) {
+      Employee.findById(req.query._id)
         .then(employee => res.send(employee))
         .catch(err => res.status(400).json(`Error: ${err}`))
     } else {
@@ -58,8 +58,39 @@ router.route('/employees/')
         .catch(err => res.status(400).json(`Error: ${err}`))
     }
   })
-  .patch((req, res) => {
-    Employee.find
+  .put((req, res) => {
+    const username = req.body.username
+    const name = req.body.name
+    const email = req.body.email
+    const phoneNumber = req.body.phoneNumber
+    const address = req.body.address
+    const isManager = req.body.isManager
+    const isAdmin = req.body.isAdmin
+    const isActive = req.body.isActive
+
+    const updatedEmployee = {
+      username,
+      name,
+      email,
+      phoneNumber,
+      address,
+      isManager,
+      isAdmin,
+      isActive
+    }
+    Employee.findByIdAndUpdate(req.body.id, updatedEmployee, (
+      (err, employee) => {
+        if (err) {
+          res.status(400).json(`Error: ${err}`)
+        } else {
+          if (req.body.password != "") {
+            employee.setPassword(req.body.password)
+              .catch(err => res.status(400).json(`Error: ${err}`))
+          }
+          res.send(employee)
+        }
+      }
+    ))
   })
 
 router.route('/:restaurantID')

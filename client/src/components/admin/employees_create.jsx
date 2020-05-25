@@ -15,11 +15,10 @@ export default class CreateEmployee extends Component {
       formControlTel: '',
       formControlManager: false,
       formControlAdmin: false,
-      formControlActive: false
+      formControlActive: true
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    console.log(this.props)
   }
 
   handleChange(event) {
@@ -27,19 +26,17 @@ export default class CreateEmployee extends Component {
     const id = target.id
     const value = (
       id === 'formControlAdmin' ? target.checked :
-      id === 'formControlManager' ? target.checked :
-      id === 'formControlActive' ? target.checked :
-      target.value
+        id === 'formControlManager' ? target.checked :
+          id === 'formControlActive' ? target.checked :
+            target.value
     )
 
-    console.log(`${event.target.id} is ${value}`)
     this.setState({
       [event.target.id]: value
     })
   }
 
   handleSubmit(event) {
-    console.log(this.state)
     axios.post(`/api/admin/employees`, {
       username: this.state.formControlUsername,
       name: this.state.formControlName,
@@ -52,11 +49,8 @@ export default class CreateEmployee extends Component {
       isActive: this.state.formControlActive
     })
       .then((res) => {
-        this.props.changeEmployeeSuccess(true)
-        this.props.history.push({
-          pathname: '/admin/employees',
-          state: { showSuccessAlert: true }
-        })
+        this.props.changeEmployeeSuccess(true, "You have successfully added a new Employee")
+        this.props.history.push('/admin/employees')
       })
     event.preventDefault()
   }
@@ -131,7 +125,7 @@ export default class CreateEmployee extends Component {
 
           <Form.Group as={Row}>
             <Col sm={1}>
-              <Button variant="dark" type="submit">Submit</Button>
+              <Button variant="dark" type="submit">Create</Button>
             </Col>
           </Form.Group>
         </Form>
