@@ -26,7 +26,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.use( (req, res, next) => {  console.log('req.session', req.session);  return next();});
 app.use(passport.initialize())
 app.use(passport.session())
 
