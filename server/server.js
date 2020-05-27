@@ -2,6 +2,7 @@ require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
+const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
@@ -17,6 +18,7 @@ const MONGOOSE_OPTIONS = {
 
 const app = express()
 app.use(cors())
+app.use(morgan('common'))
 app.use(express.json())
 
 app.use(session({
@@ -24,6 +26,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+app.use( (req, res, next) => {  console.log('req.session', req.session);  return next();});
 app.use(passport.initialize())
 app.use(passport.session())
 

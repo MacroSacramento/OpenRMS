@@ -6,10 +6,10 @@ import '../styles/admin/admin.scss'
 
 import AdminNav from './admin/admin_navbar'
 
-import AdminHome from './admin/home'
-import AdminEmployees from './admin/employees'
-import CreateEmployee from './admin/employees_create'
-import EditEmployee from './admin/employees_edit'
+import AdminHome from './admin/admin_home'
+import AdminEmployees from './admin/employees/employees'
+import CreateEmployee from './admin/employees/employees_create'
+import EditEmployee from './admin/employees/employees_edit'
 
 export default class Admin extends Component {
 

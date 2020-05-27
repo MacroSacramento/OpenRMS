@@ -16,6 +16,8 @@
     "express-basic-auth": "^1.2.0",
     "express-session": "^1.17.0",
     "mongoose": "^5.8.5",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",

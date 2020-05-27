@@ -92,6 +92,14 @@ router.route('/employees/')
       }
     ))
   })
+  .delete((req, res) => {
+    console.log(req.body.id)
+    Employee.findByIdAndDelete(req.body.id)
+    .then(() => {
+      res.json('Employee Deleted')
+    })
+    .catch(err => res.status(400).json(`Error: ${err}`))
+  })
 
 router.route('/:restaurantID')
   .get((req, res) => {

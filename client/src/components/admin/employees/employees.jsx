@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
-import { Alert, Button } from 'react-bootstrap'
+import { Alert, Button, Modal } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
 
@@ -11,8 +11,14 @@ export default class AdminEmployees extends Component {
     super(props)
     this.state = {
       employees: [],
+      showDeleteModal: false,
+      delEmployee: {
+        id: null,
+        name: null
+      }
     }
     this.handleSuccessClose = this.handleSuccessClose.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
@@ -26,14 +32,46 @@ export default class AdminEmployees extends Component {
     Feather.replace()
   }
 
-  handleSuccessClose(){
+  handleDelete(employee) {
+    this.setState({ showDeleteModal: true, delEmployee: { id: employee.id, name: employee.name } }, () => console.log(this.state))
+  }
+
+  confirmDeleteModal() {
+    return (
+      <Modal show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false })}>
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center">Are you sure?</Modal.Title>
+        </Modal.Header>
+    <Modal.Body>Deleting an employee cannot be undone and the records will be lost. Delete {this.state.delEmployee.name}?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false, delEmployee: { id: null, name: null } }, () => console.log(this.state))}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={
+            () => {
+              axios.delete('/api/admin/employees', { data: { id: this.state.delEmployeeID } })
+              this.props.changeEmployeeSuccess(true, `You have successfully deleted an employee`)
+              axios.get(`/api/admin/employees/`)
+                .then(res => {
+                  this.setState({ employees: res.data, showDeleteModal: false, delEmployee: { id: null, name: null } }, () => console.log(this.state))
+                })
+            }
+          }>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
+
+  handleSuccessClose() {
     this.props.changeEmployeeSuccess(false)
   }
 
   successAlert() {
     if (this.props.employeeAlert.show === true) {
       return (
-        <Alert variant="success" onClose={ () => this.handleSuccessClose() } dismissible>
+        <Alert variant="success" onClose={() => this.handleSuccessClose()} dismissible>
           <Alert.Heading>{this.props.employeeAlert.text}</Alert.Heading>
         </Alert>
       )
@@ -61,11 +99,13 @@ export default class AdminEmployees extends Component {
         <td className="text-center">{employee.isAdmin ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center">{employee.isActive ? <span data-feather="check"></span> : <span data-feather="x"></span>}</td>
         <td className="text-center"><NavLink to={`${url}/employees/edit/${employee._id}`}><span data-feather="edit"></span></NavLink></td>
+        <td className="text-center"><button onClick={() => this.handleDelete({ id: employee._id, name: employee.name })}><span data-feather="trash-2"></span></button></td>
       </tr>
     })
 
     return (
       <>
+        {this.confirmDeleteModal()}
         {this.successAlert()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Employees</h2>
@@ -87,6 +127,7 @@ export default class AdminEmployees extends Component {
               <th className="text-center">Admin</th>
               <th className="text-center">Active</th>
               <th className="text-center">Edit</th>
+              <th className="text-center">Delete</th>
             </tr>
           </thead>
           <tbody>

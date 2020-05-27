@@ -57,7 +57,6 @@ class EditEmployee extends Component {
           id === 'formControlActive' ? target.checked :
             target.value
     )
-
     this.setState({
       [event.target.id]: value
     })
@@ -166,7 +165,6 @@ class EditEmployee extends Component {
       return <Alert variant="danger">An error has occurred.</Alert>
     }
   }
-
 }
 
 export default withRouter(EditEmployee)
