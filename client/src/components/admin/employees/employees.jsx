@@ -115,7 +115,7 @@ export default class AdminEmployees extends Component {
             </Button>
           </NavLink>
         </div>
-        <table className="table table-hover">
+        <table className="table table-responsive-md table-hover">
           <thead>
             <tr>
               <th>Name</th>
