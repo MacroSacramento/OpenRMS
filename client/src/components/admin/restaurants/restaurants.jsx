@@ -14,6 +14,10 @@ export default class AdminRestaurants extends Component {
     }
   }
 
+  componentDidMount() {
+    document.title = "Restaurants - OpenRMS Admin"
+  }
+
   render() {
     const { url } = this.props.match
     const restaurantList = this.state.restaurants.map((restaurant) => {
