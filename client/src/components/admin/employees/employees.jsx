@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import { Alert, Button, Modal } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
-
 export default class AdminEmployees extends Component {
 
   constructor(props) {
@@ -12,7 +11,7 @@ export default class AdminEmployees extends Component {
     this.state = {
       employees: [],
       showDeleteModal: false,
-      delEmployee: {
+      deleteEmployee: {
         id: null,
         name: null
       }
@@ -33,7 +32,7 @@ export default class AdminEmployees extends Component {
   }
 
   handleDelete(employee) {
-    this.setState({ showDeleteModal: true, delEmployee: { id: employee.id, name: employee.name } }, () => console.log(this.state))
+    this.setState({ showDeleteModal: true, deleteEmployee: { id: employee.id, name: employee.name } }, () => console.log(this.state))
   }
 
   confirmDeleteModal() {
@@ -42,18 +41,18 @@ export default class AdminEmployees extends Component {
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Are you sure?</Modal.Title>
         </Modal.Header>
-    <Modal.Body>Deleting an employee cannot be undone and the records will be lost. Delete {this.state.delEmployee.name}?</Modal.Body>
+        <Modal.Body>Deleting an employee cannot be undone and the records will be lost. Delete {this.state.deleteEmployee.name}?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false, delEmployee: { id: null, name: null } }, () => console.log(this.state))}>
+          <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false, deleteEmployee: { id: null, name: null } }, () => console.log(this.state))}>
             Close
           </Button>
           <Button variant="danger" onClick={
             () => {
-              axios.delete('/api/admin/employees', { data: { id: this.state.delEmployeeID } })
+              axios.delete('/api/admin/employees', { data: { id: this.state.deleteEmployeeID } })
               this.props.changeEmployeeSuccess(true, `You have successfully deleted an employee`)
               axios.get(`/api/admin/employees/`)
                 .then(res => {
-                  this.setState({ employees: res.data, showDeleteModal: false, delEmployee: { id: null, name: null } }, () => console.log(this.state))
+                  this.setState({ employees: res.data, showDeleteModal: false, deleteEmployee: { id: null, name: null } }, () => console.log(this.state))
                 })
             }
           }>
@@ -137,5 +136,4 @@ export default class AdminEmployees extends Component {
       </>
     )
   }
-
 }
