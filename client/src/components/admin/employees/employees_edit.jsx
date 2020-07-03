@@ -43,7 +43,7 @@ class EditEmployee extends Component {
           formControlAdmin: this.state.employeeData.isAdmin,
           formControlActive: this.state.employeeData.isActive
         })
-
+        document.title = `Edit ${this.state.employeeData.name} - OpenRMS`
       })
 
   }

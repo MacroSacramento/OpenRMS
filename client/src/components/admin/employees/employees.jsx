@@ -21,6 +21,7 @@ export default class AdminEmployees extends Component {
   }
 
   componentDidMount() {
+    document.title = "Employees - OpenRMS Admin"
     axios.get(`/api/admin/employees/`)
       .then(res => {
         this.setState({ employees: res.data })

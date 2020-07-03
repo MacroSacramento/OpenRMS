@@ -21,6 +21,10 @@ export default class CreateEmployee extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidMount() {
+    document.title = 'Create Employee - OpenRMS'
+  }
+
   handleChange(event) {
     const target = event.target
     const id = target.id
