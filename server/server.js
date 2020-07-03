@@ -29,7 +29,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/api/admin', require('./routes/admin.route'))
+app.use('/api/admin', require('./routes/admin/admin.route'))
 app.use('/api/kds', require('./routes/kitchenDisplaySystem.route'))
 app.use('/api/pos', require('./routes/pointOfSale.route'))
 app.use('/api/restaurant', require('./routes/restaurant.route'))
