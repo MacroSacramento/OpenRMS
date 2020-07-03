@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const restaurantSchema = mongoose.Schema({
   id: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
@@ -15,14 +15,14 @@ const restaurantSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  employees: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee'
-  }],
   phoneNumber: {
     type: String,
     required: true
   },
+  employees: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Employee'
+  }],
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order'

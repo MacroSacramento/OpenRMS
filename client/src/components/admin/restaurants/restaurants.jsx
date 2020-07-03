@@ -16,20 +16,25 @@ export default class AdminRestaurants extends Component {
 
   componentDidMount() {
     document.title = "Restaurants - OpenRMS Admin"
+    axios.get(`/api/admin/restaurants/`)
+      .then(res => {
+        this.setState({ restaurants: res.data })
+      })
   }
 
   render() {
     const { url } = this.props.match
     const restaurantList = this.state.restaurants.map((restaurant) => {
       return (
-        <tr key={restaurant._id} id={restaurant._id}>
-          <td>{restaurant.id}</td>
-          <td>{restaurant.address}</td>
-          <td>{restaurant.phoneNumber}</td>
-          <td>{restaurant.employees}</td>
-          <td>{restaurant.orders}</td>
+        <tr key={ restaurant._id } id={ restaurant._id }>
+          <td>{ restaurant.name }</td>
+          <td>{ restaurant.id }</td>
+          <td>{ restaurant.address }</td>
+          <td>{ restaurant.phoneNumber }</td>
+          <td>{ restaurant.employees }</td>
+          <td>{ restaurant.orders }</td>
           <td className="text-center">
-            <NavLink to={`${url}/restaurants/edit/${restaurant._id}`}>
+            <NavLink to={`${url}/restaurants/edit/${ restaurant._id }`}>
               <span data-feather="edit"></span>
             </NavLink>
           </td>
@@ -55,6 +60,7 @@ export default class AdminRestaurants extends Component {
         <table className="table table-responsive-md table-hover">
           <thead>
             <tr>
+              <th>Name</th>
               <th>ID</th>
               <th>Address</th>
               <th>Phone Number</th>
