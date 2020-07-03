@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Nav } from 'react-bootstrap'
-import { Switch, Route, NavLink } from 'react-router-dom'
+import { Container, Row } from 'react-bootstrap'
+import { Switch, Route } from 'react-router-dom'
 import Feather from 'feather-icons'
-import '../styles/admin/admin.scss'
+import '../../styles/admin/admin.scss'
 
-import AdminNav from './admin/admin_navbar'
+import AdminNavBar from './admin_navbar'
+import AdminSideBar from './admin_sidebar'
 
-import AdminHome from './admin/admin_home'
-import AdminEmployees from './admin/employees/employees'
-import CreateEmployee from './admin/employees/employees_create'
-import EditEmployee from './admin/employees/employees_edit'
+import AdminHome from './admin_home'
+import AdminRestaurants from './restaurants/restaurants'
+import AdminEmployees from './employees/employees'
+import CreateEmployee from './employees/employees_create'
+import EditEmployee from './employees/employees_edit'
 
 export default class Admin extends Component {
 
@@ -38,29 +40,20 @@ export default class Admin extends Component {
   }
 
   render() {
-    const { path, url } = this.props.match
+    const { path } = this.props.match
 
     return (
       <>
-        <AdminNav {...this.props} />
+        <AdminNavBar {...this.props} />
         <Container fluid="true">
           <Row>
-            <Col md="2" className="d-none d-md-block bg-light sidebar">
-              <div className="sidebar-sticky">
-                <Nav className="flex-column">
-                  <Nav.Item>
-                    <NavLink exact to={`${url}`} className="nav-link"><span data-feather="home"></span>Dashboard</NavLink>
-                    <NavLink to={`${url}/orders`} className="nav-link"><span data-feather="archive"></span>Orders</NavLink>
-                    <NavLink to={`${url}/restaurants`} className="nav-link"><span data-feather="map"></span>Restaurants</NavLink>
-                    <NavLink to={{ pathname: `${url}/employees`, state: { showSuccessAlert: false } }} className="nav-link"><span data-feather="users"></span>Employees</NavLink>
-                    <NavLink to={`${url}/recipes`} className="nav-link"><span data-feather="clipboard"></span>Recipes</NavLink>
-                  </Nav.Item>
-                </Nav>
-              </div>
-            </Col>
+            <AdminSideBar {...this.props} />
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
               <Switch>
                 <Route exact path={path} component={AdminHome} />
+
+                <Route exact path={`${path}/restaurants`} render={(props) => <AdminRestaurants {...this.props} />} />
+
                 <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees
                   {...this.props}
                   employeeAlert={this.state.employeeAlert}
@@ -68,6 +61,7 @@ export default class Admin extends Component {
                 />
                 <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
                 <Route path={`${path}/employees/edit/:id`} render={(props) => <EditEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
+
               </Switch>
             </main>
           </Row>
