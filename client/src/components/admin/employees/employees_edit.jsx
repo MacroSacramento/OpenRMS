@@ -1,4 +1,4 @@
-import axios from 'axios'
+import Axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import React, { Component } from 'react'
 import { Form, Col, Row, Button, Alert } from 'react-bootstrap'
@@ -9,7 +9,7 @@ class EditEmployee extends Component {
     super(props)
     this.state = {
       isLoading: true,
-      employeeData: null,
+      employeeData: {},
       formControlName: '',
       formControlUsername: '',
       formControlPassword: '',
@@ -25,7 +25,7 @@ class EditEmployee extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/admin/employees', {
+    Axios.get('/api/admin/employees', {
       params: { _id: this.props.match.params.id }
     })
       .then((res) => {
@@ -63,7 +63,7 @@ class EditEmployee extends Component {
   }
 
   handleSubmit(event) {
-    axios.put(`/api/admin/employees`, {
+    Axios.put(`/api/admin/employees`, {
       id: this.props.match.params.id,
       username: this.state.formControlUsername,
       name: this.state.formControlName,
