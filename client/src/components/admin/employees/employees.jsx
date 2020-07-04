@@ -1,4 +1,4 @@
-import axios from 'axios'
+import Axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
 import { Alert, Button, Modal } from 'react-bootstrap'
@@ -22,7 +22,7 @@ export default class AdminEmployees extends Component {
 
   componentDidMount() {
     document.title = "Employees - OpenRMS Admin"
-    axios.get(`/api/admin/employees/`)
+    Axios.get(`/api/admin/employees/`)
       .then(res => {
         this.setState({ employees: res.data })
       })
@@ -49,9 +49,14 @@ export default class AdminEmployees extends Component {
           </Button>
           <Button variant="danger" onClick={
             () => {
-              axios.delete('/api/admin/employees', { data: { id: this.state.deleteEmployeeID } })
+              Axios.delete('/api/admin/employees/', 
+              { 
+                data: { 
+                  id: this.state.deleteEmployee.id
+                },
+              }).then(res => console.log(res))
               this.props.changeEmployeeSuccess(true, `You have successfully deleted an employee`)
-              axios.get(`/api/admin/employees/`)
+              Axios.get(`/api/admin/employees/`)
                 .then(res => {
                   this.setState({ employees: res.data, showDeleteModal: false, deleteEmployee: { id: null, name: null } }, () => console.log(this.state))
                 })

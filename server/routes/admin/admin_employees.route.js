@@ -83,8 +83,11 @@ router.route('/')
   })
 
   .delete((req, res) => {
+    console.log(req.body)
+    Employee.findById(req.body.id)
+      .then(employee => console.log(employee))
     Employee.findByIdAndDelete(req.body.id)
-      .then(() => {
+      .then((res) => {
         res.json('Employee Deleted')
       })
       .catch(err => res.status(400).json(`Error: ${err}`))
