@@ -9,6 +9,7 @@ import AdminSideBar from './admin_sidebar'
 
 import AdminHome from './admin_home'
 import AdminRestaurants from './restaurants/restaurants'
+import AdminRestaurantOrderList from './restaurants/restaurant_order_list'
 import AdminEmployees from './employees/employees'
 import CreateEmployee from './employees/employees_create'
 import EditEmployee from './employees/employees_edit'
@@ -52,15 +53,40 @@ export default class Admin extends Component {
               <Switch>
                 <Route exact path={path} component={AdminHome} />
 
-                <Route exact path={`${path}/restaurants`} render={(props) => <AdminRestaurants {...this.props} />} />
-
-                <Route exact path={`${path}/employees`} render={(props) => <AdminEmployees
-                  {...this.props}
-                  employeeAlert={this.state.employeeAlert}
-                  changeEmployeeSuccess={this.handleEmployeeSuccess} />}
+                <Route exact path={`${path}/restaurants`}
+                  render={
+                    (props) => <AdminRestaurants {...this.props} />}
                 />
-                <Route path={`${path}/employees/create`} render={(props) => <CreateEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
-                <Route path={`${path}/employees/edit/:id`} render={(props) => <EditEmployee {...this.props} changeEmployeeSuccess={this.handleEmployeeSuccess} />} />
+                <Route path={`${path}/restaurants/:id/orders`}
+                  render={
+                    (props) => <AdminRestaurantOrderList {...this.props} />}
+                />
+
+                <Route exact path={`${path}/employees`}
+                  render={
+                    (props) =>
+                      <AdminEmployees
+                        {...this.props}
+                        employeeAlert={this.state.employeeAlert}
+                        changeEmployeeSuccess={this.handleEmployeeSuccess}
+                      />}
+                />
+                <Route path={`${path}/employees/create`}
+                  render={
+                    (props) =>
+                      <CreateEmployee
+                        {...this.props}
+                        changeEmployeeSuccess={this.handleEmployeeSuccess}
+                      />}
+                />
+                <Route path={`${path}/employees/edit/:id`}
+                  render={
+                    (props) =>
+                      <EditEmployee
+                        {...this.props}
+                        changeEmployeeSuccess={this.handleEmployeeSuccess}
+                      />}
+                />
 
               </Switch>
             </main>

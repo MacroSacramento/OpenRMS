@@ -1,4 +1,4 @@
-import axios from 'axios'
+import Axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
 import { Alert, Button, Modal } from 'react-bootstrap'
@@ -16,10 +16,14 @@ export default class AdminRestaurants extends Component {
 
   componentDidMount() {
     document.title = "Restaurants - OpenRMS Admin"
-    axios.get(`/api/admin/restaurants/`)
+    Axios.get(`/api/admin/restaurants/`)
       .then(res => {
         this.setState({ restaurants: res.data })
       })
+  }
+
+  componentDidUpdate() {
+    Feather.replace()
   }
 
   render() {
@@ -31,8 +35,16 @@ export default class AdminRestaurants extends Component {
           <td>{ restaurant.id }</td>
           <td>{ restaurant.address }</td>
           <td>{ restaurant.phoneNumber }</td>
-          <td>{ restaurant.employees }</td>
-          <td>{ restaurant.orders }</td>
+          <td className="text-center">
+            <NavLink to={`${url}/restaurants/${ restaurant._id }/orders/`}>
+              <span data-feather="edit"></span>
+            </NavLink>
+          </td>
+          <td className="text-center">
+            <NavLink to={`${url}/restaurants/employees/${ restaurant._id }`}>
+              <span data-feather="edit"></span>
+            </NavLink>
+          </td>
           <td className="text-center">
             <NavLink to={`${url}/restaurants/edit/${ restaurant._id }`}>
               <span data-feather="edit"></span>
@@ -64,6 +76,10 @@ export default class AdminRestaurants extends Component {
               <th>ID</th>
               <th>Address</th>
               <th>Phone Number</th>
+              <th className="text-center">Orders</th>
+              <th className="text-center">Employees</th>
+              <th className="text-center">Edit</th>
+              <th className="text-center">Delete</th>
             </tr>
           </thead>
           <tbody>

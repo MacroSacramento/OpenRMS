@@ -13,16 +13,16 @@ router.route('/')
       .catch(err => res.status(400).json('Error: ' + err))
   })
   .get((req, res) => {
-    Restaurant.find()
-      .then(restaunts => res.json(restaunts))
-      .catch(err => res.status(400).json(`Error: ` + err))
-  })
+    if (req.query._id) {
+      Restaurant.findById(req.query._id)
+        .then(restaurant => res.send(restaurant))
+        .catch(err => res.status(400).json(`Error: ${err}`))
 
-router.route('/:restaurantID')
-  .get((req, res) => {
-    Restaurant.find(req.params.restaurantID)
-      .then(restaunt => res.json(restaunt))
-      .catch(err => res.status(400).json(`Error: ` + err))
+    } else {
+      Restaurant.find({})
+        .then(restaurants => res.send(restaurants))
+        .catch(err => res.status(400).json(`Error: ${err}`))
+    }
   })
 
 module.exports = router
