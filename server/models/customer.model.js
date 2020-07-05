@@ -7,17 +7,10 @@ const customerSchema = mongoose.Schema({
   },
   phoneNumber: {
     type: Number,
-    required: true
   },
   address: {
     type: String,
-    required: true
-  },
-  restaurants: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Restaurant',
-    required: true
-  }]
+  }
 })
 
 const Customer = mongoose.model('Customer', customerSchema)

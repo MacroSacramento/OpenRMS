@@ -4,7 +4,6 @@ let Restaurant = require('../../models/restaurant.model')
 
 router.route('/')
   .post((req, res) => {
-    const { body } = req
     const { id, name, address, phoneNumber } = req.body
 
     const restaurant = new Restaurant({ id, name, address, phoneNumber })
@@ -22,6 +21,13 @@ router.route('/')
       Restaurant.find({})
         .then(restaurants => res.send(restaurants))
         .catch(err => res.status(400).json(`Error: ${err}`))
+    }
+  })
+  .put((req, res) => {
+    if(req.body.orders != []){
+      Restaurant.findByIdAndUpdate(req.body.id, {
+        $push: { orders: req.body.orders }
+      })
     }
   })
 

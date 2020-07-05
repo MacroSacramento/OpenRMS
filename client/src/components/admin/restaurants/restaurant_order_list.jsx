@@ -21,7 +21,10 @@ class AdminRestaurantOrderList extends Component {
   }
 
   render() {
-    return "Hello World"
+    return (
+      <>
+      </>
+    )
   }
 
 }
