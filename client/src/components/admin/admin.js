@@ -8,8 +8,11 @@ import AdminNavBar from './admin_navbar'
 import AdminSideBar from './admin_sidebar'
 
 import AdminHome from './admin_home'
+
 import AdminRestaurants from './restaurants/restaurants'
 import AdminRestaurantOrderList from './restaurants/restaurant_order_list'
+import RestaurantEdit from './restaurants/restaurant_edit'
+
 import AdminEmployees from './employees/employees'
 import CreateEmployee from './employees/employees_create'
 import EditEmployee from './employees/employees_edit'
@@ -60,6 +63,10 @@ export default class Admin extends Component {
                 <Route path={`${path}/restaurants/:id/orders`}
                   render={
                     (props) => <AdminRestaurantOrderList {...this.props} />}
+                />
+                <Route path={`${path}/restaurants/edit/:id`}
+                  render={
+                    (props) => <RestaurantEdit {...this.props} />}
                 />
 
                 <Route exact path={`${path}/employees`}
