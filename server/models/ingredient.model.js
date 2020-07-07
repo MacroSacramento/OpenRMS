@@ -9,6 +9,10 @@ const ingredientSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  quantity: {
+    type: Number,
+    required: true
+  }
 })
 
 const Ingredient = new mongoose.model('Ingredient', ingredientSchema)

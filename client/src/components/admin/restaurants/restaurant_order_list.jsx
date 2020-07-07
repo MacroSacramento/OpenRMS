@@ -14,10 +14,11 @@ class AdminRestaurantOrderList extends Component {
 
   componentDidMount() {
     console.log(this.props.match.params)
-    Axios.get(`/api/admin/restaurants`, {
-      params: { _id: this.props.match.params.id }
-    })
-      .then((res) => console.log(res.data))
+    Axios.get(`/api/admin/restaurants`,
+      {
+        params: { _id: this.props.match.params.id }
+      })
+      .then((res) => this.setState({ orders: res.data.orders }))
   }
 
   render() {
