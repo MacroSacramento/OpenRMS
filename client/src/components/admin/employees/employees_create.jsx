@@ -22,7 +22,7 @@ export default class CreateEmployee extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Create Employee - OpenRMS'
+    document.title = 'Create Employee' + process.env.REACT_APP_RESTAURANT_TITLE
   }
 
   handleChange(event) {

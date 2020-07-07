@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Axios from 'axios'
 
-class AdminRestaurantOrderList extends Component {
+class RestaurantOrderList extends Component {
 
   constructor(props) {
     super(props)
@@ -18,7 +18,10 @@ class AdminRestaurantOrderList extends Component {
       {
         params: { _id: this.props.match.params.id }
       })
-      .then((res) => this.setState({ orders: res.data.orders }))
+      .then((res) => {
+        document.title = `${res.data.name} Orders` + process.env.REACT_APP_RESTAURANT_TITLE
+        this.setState({ orders: res.data.orders })
+      })
   }
 
   render() {
@@ -30,4 +33,4 @@ class AdminRestaurantOrderList extends Component {
 
 }
 
-export default withRouter(AdminRestaurantOrderList)
+export default withRouter(RestaurantOrderList)
