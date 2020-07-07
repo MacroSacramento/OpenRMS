@@ -15,6 +15,7 @@ export default class AdminSideBar extends Component {
               <NavLink to={`${url}/restaurants`} className="nav-link"><span data-feather="map"></span>Restaurants</NavLink>
               <NavLink to={{ pathname: `${url}/employees`, state: { showSuccessAlert: false } }} className="nav-link"><span data-feather="users"></span>Employees</NavLink>
               <NavLink to={`${url}/recipes`} className="nav-link"><span data-feather="clipboard"></span>Recipes</NavLink>
+              <NavLink to={`${url}/ingredients`} className="nav-link"><span data-feather="clipboard"></span>Ingredients</NavLink>
             </Nav.Item>
           </Nav>
         </div>
