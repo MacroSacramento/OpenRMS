@@ -4,18 +4,20 @@ import { Switch, Route } from 'react-router-dom'
 import Feather from 'feather-icons'
 import '../../styles/admin/admin.scss'
 
-import AdminNavBar from './admin_navbar'
+import AdminNav from './admin_navbar'
 import AdminSideBar from './admin_sidebar'
 
-import AdminHome from './admin_home'
+import Home from './admin_home'
 
-import AdminRestaurants from './restaurants/restaurants'
-import AdminRestaurantOrderList from './restaurants/restaurant_order_list'
+import Restaurants from './restaurants/restaurants'
+import RestaurantOrderList from './restaurants/restaurant_order_list'
 import RestaurantEdit from './restaurants/restaurant_edit'
 
-import AdminEmployees from './employees/employees'
+import Employees from './employees/employees'
 import CreateEmployee from './employees/employees_create'
 import EditEmployee from './employees/employees_edit'
+
+import CreateIngredient from './ingredients/ingredients_create'
 
 export default class Admin extends Component {
 
@@ -48,21 +50,21 @@ export default class Admin extends Component {
 
     return (
       <>
-        <AdminNavBar {...this.props} />
+        <AdminNav {...this.props} />
         <Container fluid="true">
           <Row>
             <AdminSideBar {...this.props} />
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
               <Switch>
-                <Route exact path={path} component={AdminHome} />
+                <Route exact path={path} component={Home} />
 
                 <Route exact path={`${path}/restaurants`}
                   render={
-                    (props) => <AdminRestaurants {...this.props} />}
+                    (props) => <Restaurants {...this.props} />}
                 />
                 <Route path={`${path}/restaurants/:id/orders`}
                   render={
-                    (props) => <AdminRestaurantOrderList {...this.props} />}
+                    (props) => <RestaurantOrderList {...this.props} />}
                 />
                 <Route path={`${path}/restaurants/edit/:id`}
                   render={
@@ -72,7 +74,7 @@ export default class Admin extends Component {
                 <Route exact path={`${path}/employees`}
                   render={
                     (props) =>
-                      <AdminEmployees
+                      <Employees
                         {...this.props}
                         employeeAlert={this.state.employeeAlert}
                         changeEmployeeSuccess={this.handleEmployeeSuccess}
@@ -93,6 +95,13 @@ export default class Admin extends Component {
                         {...this.props}
                         changeEmployeeSuccess={this.handleEmployeeSuccess}
                       />}
+                />
+
+                <Route path={`${path}/ingredients/create`}
+                  render={
+                    (props) =>
+                      <CreateIngredient
+                        {...this.props} />}
                 />
 
               </Switch>

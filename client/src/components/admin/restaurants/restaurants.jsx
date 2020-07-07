@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Alert, Button, Modal } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
-export default class AdminRestaurants extends Component {
+export default class Restaurants extends Component {
 
   constructor(props) {
     super(props)
@@ -15,7 +15,7 @@ export default class AdminRestaurants extends Component {
   }
 
   componentDidMount() {
-    document.title = "Restaurants - OpenRMS Admin"
+    document.title = "Restaurants" + process.env.REACT_APP_RESTAURANT_TITLE
     Axios.get(`/api/admin/restaurants/`)
       .then(res => {
         this.setState({ restaurants: res.data })
