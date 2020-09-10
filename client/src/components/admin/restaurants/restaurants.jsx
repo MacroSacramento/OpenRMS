@@ -15,7 +15,7 @@ export default class Restaurants extends Component {
   }
 
   componentDidMount() {
-    document.title = "Restaurants" + process.env.REACT_APP_RESTAURANT_TITLE
+    document.title = "Restaurants | " + process.env.REACT_APP_RESTAURANT_NAME
     Axios.get(`/api/admin/restaurants/`)
       .then(res => {
         this.setState({ restaurants: res.data })

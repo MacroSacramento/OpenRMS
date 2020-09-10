@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Home extends Component {
 
   componentDidMount() {
-    document.title = 'Home' + process.env.REACT_APP_RESTAURANT_TITLE
+    document.title = 'Home | ' + process.env.REACT_APP_RESTAURANT_NAME
   }
 
   render() {

@@ -102,7 +102,7 @@ export default class CreateEmployee extends Component {
           <Form.Group as={Row} controlId="formControlTel">
             <Form.Label column sm={2}>Phone Number *</Form.Label>
             <Col sm={5}>
-              <Form.Control type="tel" value={this.state.formControlTel} onChange={this.handleChange} placeholder="(123) 456 7891" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+              <Form.Control type="tel" value={this.state.formControlTel} onChange={this.handleChange} placeholder="(123) 456 7891" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" required />
             </Col>
           </Form.Group>
 

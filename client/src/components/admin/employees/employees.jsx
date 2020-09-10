@@ -21,7 +21,7 @@ export default class Employees extends Component {
   }
 
   componentDidMount() {
-    document.title = "Employees" + process.env.REACT_APP_RESTAURANT_TITLE
+    document.title = "Employees | " + process.env.REACT_APP_RESTAURANT_NAME
     Axios.get(`/api/admin/employees/`)
       .then(res => {
         this.setState({ employees: res.data })

@@ -7,8 +7,8 @@ const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
 
-const PORT = process.env.PORT || 3000
-const MONGO_URI = process.env.MONGO_URI
+const PORT = process.env.PORT || 3001
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost"
 const MONGOOSE_OPTIONS = {
   useNewUrlParser: true,
   useCreateIndex: true,
