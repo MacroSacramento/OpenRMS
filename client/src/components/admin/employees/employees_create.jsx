@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { Form, Col, Row, Button } from 'react-bootstrap'
 
 export default class CreateEmployee extends Component {
 
@@ -22,7 +21,7 @@ export default class CreateEmployee extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Create Employee' + process.env.REACT_APP_RESTAURANT_TITLE
+    document.title = 'Create Employee | ' + process.env.REACT_APP_RESTAURANT_NAME
   }
 
   handleChange(event) {
@@ -63,76 +62,83 @@ export default class CreateEmployee extends Component {
     return (
       <>
         <h1 className="h2 border-bottom pb-2">Create Employee</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group as={Row} controlId="formControlName">
-            <Form.Label column sm={2}>Full Name *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="text" value={this.state.formControlName} onChange={this.handleChange} placeholder="John Doe" required />
-            </Col>
-          </Form.Group>
 
-          <Form.Group as={Row} controlId="formControlUsername">
-            <Form.Label column sm={2}>Username *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="text" value={this.state.formControlUsername} onChange={this.handleChange} placeholder="Username" required />
-            </Col>
-          </Form.Group>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group row">
+            <label htmlFor="formControlName" className="col-sm-2">Full Name *</label>
+            <div className="col-sm-5">
+              <input type="text" id="formControlName" className="form-control" placeholder="John Doe" required="true" value={this.state.formControlName} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlPassword">
-            <Form.Label column sm={2}>Password *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="password" value={this.state.formControlPassword} onChange={this.handleChange} placeholder="Password" required />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlUsername" className="col-sm-2">Username *</label>
+            <div className="col-sm-5">
+              <input type="text" id="formControlUsername" className="form-control" placeholder="Username" required="true" value={this.state.formControlUsername} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlEmail">
-            <Form.Label column sm={2}>Email *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="email" value={this.state.formControlEmail} onChange={this.handleChange} placeholder="name@email.com" required />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlPassword" className="col-sm-2">Password *</label>
+            <div className="col-sm-5">
+              <input type="password" id="formControlPassword" className="form-control" placeholder="Password" required="true" value={this.state.formControlPassword} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlAddress">
-            <Form.Label column sm={2}>Address *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="text" value={this.state.formControlAddress} onChange={this.handleChange} placeholder="123 Palm Lane" required />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlEmail" className="col-sm-2">Email *</label>
+            <div className="col-sm-5">
+              <input type="email" id="formControlEmail" className="form-control" placeholder="name@email.com" required="true" value={this.state.formControlEmail} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlTel">
-            <Form.Label column sm={2}>Phone Number *</Form.Label>
-            <Col sm={5}>
-              <Form.Control type="tel" value={this.state.formControlTel} onChange={this.handleChange} placeholder="(123) 456 7891" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" required />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlAddress" className="col-sm-2">Address *</label>
+            <div className="col-sm-5">
+              <input type="text" id="formControlAddress" className="form-control" placeholder="123 W. Palm Lane" required="true" value={this.state.formControlAddress} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlManager">
-            <Form.Label column sm={2}>Manager</Form.Label>
-            <Col sm={1}>
-              <Form.Check checked={this.state.formControlManager} onChange={this.handleChange} aria-label="is Manager?" />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlTel" className="col-sm-2">Phone Number *</label>
+            <div className="col-sm-5">
+              <input type="text" id="formControlTel" className="form-control" placeholder="(123) 456 7890" required="true" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" value={this.state.formControlTel} onChange={this.handleChange} />
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlAdmin">
-            <Form.Label column sm={2}>Admin</Form.Label>
-            <Col sm={1}>
-              <Form.Check checked={this.state.formControlAdmin} onChange={this.handleChange} aria-label="is Admin?" />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlManager" className="form-label col-form-label col-sm-2">Manager</label>
+            <div className="col-sm-1">
+              <div class="form-check">
+                <input type="checkbox" id="formControlManager" className="form-check-input position-static" checked={this.state.formControlManager} onChange={this.handleChange}/>
+              </div>
+            </div>
+          </div>
 
-          <Form.Group as={Row} controlId="formControlActive">
-            <Form.Label column sm={2}>Active</Form.Label>
-            <Col sm={1}>
-              <Form.Check checked={this.state.formControlActive} onChange={this.handleChange} aria-label="is Active?" />
-            </Col>
-          </Form.Group>
+          <div className="form-group row">
+            <label htmlFor="formControlAdmin" className="form-label col-form-label col-sm-2">Admin</label>
+            <div className="col-sm-1">
+              <div class="form-check">
+                <input type="checkbox" id="formControlAdmin" className="form-check-input position-static" checked={this.state.formControlAdmin} onChange={this.handleChange}/>
+              </div>
+            </div>
+          </div>
 
-          <Form.Group as={Row}>
-            <Col sm={1}>
-              <Button variant="dark" type="submit">Create</Button>
-            </Col>
-          </Form.Group>
-        </Form>
+          <div className="form-group row">
+            <label htmlFor="formControlActive" className="form-label col-form-label col-sm-2">Active</label>
+            <div className="col-sm-1">
+              <div class="form-check">
+                <input type="checkbox" id="formControlActive" className="form-check-input position-static" checked={this.state.formControlActive} onChange={this.handleChange}/>
+              </div>
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <div className="col-sm-1">
+              <input type="button" type="submit" value="Create Employee" className="btn btn-dark" />
+            </div>
+          </div>
+        </form>
       </>
     )
   }

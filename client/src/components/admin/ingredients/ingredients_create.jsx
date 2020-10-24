@@ -11,7 +11,7 @@ export default class CreateIngredient extends Component {
   }
 
   componentDidMount() {
-    document.title = "Create Ingredient" + process.env.REACT_APP_RESTAURANT_TITLE
+    document.title = "Create Ingredient | " + process.env.REACT_APP_RESTAURANT_NAME
   }
 
   render(){

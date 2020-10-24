@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
 import { Switch, Route } from 'react-router-dom'
 import Feather from 'feather-icons'
 import '../../styles/admin/admin.scss'
@@ -51,10 +50,10 @@ export default class Admin extends Component {
     return (
       <>
         <AdminNav {...this.props} />
-        <Container fluid="true">
-          <Row>
+        <div className="container-fluid">
+          <div className="row">
             <AdminSideBar {...this.props} />
-            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <main role="main" className="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
               <Switch>
                 <Route exact path={path} component={Home} />
 
@@ -106,8 +105,8 @@ export default class Admin extends Component {
 
               </Switch>
             </main>
-          </Row>
-        </Container>
+          </div>
+        </div>
       </>
     )
   }

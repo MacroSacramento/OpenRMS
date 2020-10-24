@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import Feather from 'feather-icons'
 import React, { Component } from 'react'
-import { Alert, Button, Modal } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
 export default class Employees extends Component {
@@ -37,8 +37,8 @@ export default class Employees extends Component {
   }
 
   confirmDeleteModal() {
-    return (
-      <Modal show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false })}>
+    return (<>
+    <Modal show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false })}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Are you sure?</Modal.Title>
         </Modal.Header>
@@ -49,12 +49,12 @@ export default class Employees extends Component {
           </Button>
           <Button variant="danger" onClick={
             () => {
-              Axios.delete('/api/admin/employees/', 
-              { 
-                data: { 
-                  id: this.state.deleteEmployee.id
-                },
-              }).then(res => console.log(res))
+              Axios.delete('/api/admin/employees/',
+                {
+                  data: {
+                    id: this.state.deleteEmployee.id
+                  },
+                }).then(res => console.log(res))
               this.props.changeEmployeeSuccess(true, `You have successfully deleted an employee`)
               Axios.get(`/api/admin/employees/`)
                 .then(res => {
@@ -65,8 +65,8 @@ export default class Employees extends Component {
             Delete
           </Button>
         </Modal.Footer>
-      </Modal>
-    )
+      </Modal>      
+    </>)
   }
 
   handleSuccessClose() {
@@ -76,9 +76,12 @@ export default class Employees extends Component {
   successAlert() {
     if (this.props.employeeAlert.show === true) {
       return (
-        <Alert variant="success" onClose={() => this.handleSuccessClose()} dismissible>
-          <Alert.Heading>{this.props.employeeAlert.text}</Alert.Heading>
-        </Alert>
+        <div className="alert alert-success alert-dismissibile fade show" role="alert">
+          <button type="button" className="close" onClick={() => this.handleSuccessClose()} data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close alert</span>
+          </button>
+          <h4>{this.props.employeeAlert.text}</h4>
+        </div>
       )
     }
   }

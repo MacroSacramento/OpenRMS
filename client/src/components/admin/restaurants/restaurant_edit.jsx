@@ -12,7 +12,7 @@ class RestaurantEdit extends Component {
   componentDidMount() {
     const { id } = this.props.match.params
     Axios.get('/api/admin/restaurants', { params: { _id: id } })
-      .then(res => document.title = `${res.data.name}` + process.env.REACT_APP_RESTAURANT_TITLE)
+      .then(res => document.title = `${res.data.name}` + process.env.REACT_APP_RESTAURANT_NAME)
     Axios.post('')
   }
 

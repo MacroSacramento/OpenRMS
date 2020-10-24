@@ -19,7 +19,7 @@ class RestaurantOrderList extends Component {
         params: { _id: this.props.match.params.id }
       })
       .then((res) => {
-        document.title = `${res.data.name} Orders` + process.env.REACT_APP_RESTAURANT_TITLE
+        document.title = `${res.data.name} Orders | ` + process.env.REACT_APP_RESTAURANT_NAME
         this.setState({ orders: res.data.orders })
       })
   }
