@@ -16,7 +16,6 @@ export default class Employees extends Component {
         name: null
       }
     }
-    this.handleSuccessClose = this.handleSuccessClose.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
   }
 
@@ -55,7 +54,7 @@ export default class Employees extends Component {
                     id: this.state.deleteEmployee.id
                   },
                 }).then(res => console.log(res))
-              this.props.changeEmployeeSuccess(true, `You have successfully deleted an employee`)
+              this.props.changeSuccess(true, `You have successfully deleted an employee`)
               Axios.get(`/api/admin/employees/`)
                 .then(res => {
                   this.setState({ employees: res.data, showDeleteModal: false, deleteEmployee: { id: null, name: null } }, () => console.log(this.state))
@@ -67,23 +66,6 @@ export default class Employees extends Component {
         </Modal.Footer>
       </Modal>      
     </>)
-  }
-
-  handleSuccessClose() {
-    this.props.changeEmployeeSuccess(false)
-  }
-
-  successAlert() {
-    if (this.props.employeeAlert.show === true) {
-      return (
-        <div className="alert alert-success alert-dismissibile fade show" role="alert">
-          <button type="button" className="close" onClick={() => this.handleSuccessClose()} data-dismiss="alert">
-            <span aria-hidden="true">&times;</span><span class="sr-only">Close alert</span>
-          </button>
-          <h4>{this.props.employeeAlert.text}</h4>
-        </div>
-      )
-    }
   }
 
   onSuccessAlertClose() {
@@ -114,7 +96,7 @@ export default class Employees extends Component {
     return (
       <>
         {this.confirmDeleteModal()}
-        {this.successAlert()}
+        {this.props.showSuccess()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Employees</h2>
           <NavLink to={`${url}/employees/create`}>

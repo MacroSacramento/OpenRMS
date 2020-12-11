@@ -12,6 +12,16 @@ body {
   vertical-align: text-bottom;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 @import './admin-nav.scss';
 @import './admin-content.scss';
 @import './admin-sidebar.scss';

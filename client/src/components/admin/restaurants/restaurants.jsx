@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { Alert, Button, Modal } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
+import AdminAlert from '../admin_alert'
+
 export default class Restaurants extends Component {
 
   constructor(props) {
@@ -61,9 +63,10 @@ export default class Restaurants extends Component {
 
     return (
       <>
+        {AdminAlert.successAlert()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Restaurants</h2>
-          <NavLink to={`${url}/employees/create`}>
+          <NavLink to={`${url}/restaurants/create`}>
             <Button type="button" size="sm" variant="dark" className="float-right mt-1 align-middle">
               <span className="feather-16" data-feather="shopping-bag"></span><span className="pl-1">Create Restaurant</span>
             </Button>

@@ -75,7 +75,7 @@ class EditEmployee extends Component {
       isActive: this.state.formControlActive
     })
       .then((res) => {
-        this.props.changeEmployeeSuccess(true, `You have successfully updated employee: ${this.state.formControlName}`)
+        this.props.changeSuccess(true, `You have successfully updated employee: ${this.state.formControlName}`)
         this.props.history.push('/admin/employees')
       })
     event.preventDefault()
@@ -132,7 +132,7 @@ class EditEmployee extends Component {
           <div className="form-group row">
             <label htmlFor="formControlManager" className="form-label col-form-label col-sm-2">Manager</label>
             <div className="col-sm-1">
-              <div class="form-check">
+              <div className="form-check">
                 <input type="checkbox" id="formControlManager" className="form-check-input position-static" checked={this.state.formControlManager} onChange={this.handleChange}/>
               </div>
             </div>
@@ -141,7 +141,7 @@ class EditEmployee extends Component {
           <div className="form-group row">
             <label htmlFor="formControlAdmin" className="form-label col-form-label col-sm-2">Admin</label>
             <div className="col-sm-1">
-              <div class="form-check">
+              <div className="form-check">
                 <input type="checkbox" id="formControlAdmin" className="form-check-input position-static" checked={this.state.formControlAdmin} onChange={this.handleChange}/>
               </div>
             </div>
@@ -150,7 +150,7 @@ class EditEmployee extends Component {
           <div className="form-group row">
             <label htmlFor="formControlActive" className="form-label col-form-label col-sm-2">Active</label>
             <div className="col-sm-1">
-              <div class="form-check">
+              <div className="form-check">
                 <input type="checkbox" id="formControlActive" className="form-check-input position-static" checked={this.state.formControlActive} onChange={this.handleChange}/>
               </div>
             </div>
