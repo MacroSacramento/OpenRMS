@@ -1,0 +1,17 @@
+.header {
+    background-color: white;
+    height: (100vh/ 12);
+    width: 100vw;
+    box-shadow: 0px 0px 20px -10px;
+    position: absolute;
+
+    .header_logo{
+        margin-left: calc(100vw / 12);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-left: 3vw;
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+}

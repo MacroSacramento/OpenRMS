@@ -63,7 +63,6 @@ export default class Restaurants extends Component {
 
     return (
       <>
-        {AdminAlert.successAlert()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Restaurants</h2>
           <NavLink to={`${url}/restaurants/create`}>

@@ -96,7 +96,6 @@ export default class Employees extends Component {
     return (
       <>
         {this.confirmDeleteModal()}
-        {this.props.showSuccess()}
         <div className="w-100">
           <h2 className="h2 d-inline-block">Employees</h2>
           <NavLink to={`${url}/employees/create`}>

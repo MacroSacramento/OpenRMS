@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Feather from 'feather-icons'
 import '../../styles/admin/admin.scss'
 
+import AdminAlert from './admin_alert'
 import AdminNav from './admin_navbar'
 import AdminSideBar from './admin_sidebar'
 
@@ -31,21 +32,6 @@ export default class Admin extends Component {
     }
     this.handleSuccess = this.handleSuccess.bind(this)
     this.handleSuccessClose = this.handleSuccessClose.bind(this)
-    this.successAlert = this.successAlert.bind(this)
-  }
-
-  successAlert() {
-    console.log(this.state.alert)
-    if (this.state.alert.show === true) {
-      return (
-        <div className="alert alert-success alert-dismissibile fade show" role="alert">
-          <button type="button" className="close" onClick={() => this.handleSuccessClose()} data-dismiss="alert">
-            <span aria-hidden="true">&times;</span><span className="sr-only">Close alert</span>
-          </button>
-          <h4>{this.state.alert.text}</h4>
-        </div>
-      )
-    }
   }
 
   handleSuccess(show, text = "") {
@@ -55,6 +41,7 @@ export default class Admin extends Component {
         text: text
       }
     });
+    
   }
 
   handleSuccessClose() {
@@ -75,6 +62,7 @@ export default class Admin extends Component {
           <div className="row">
             <AdminSideBar {...this.props} />
             <main role="main" className="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+              <AdminAlert show={this.state.alert.show} text={this.state.alert.text} />
               <Switch>
                 <Route exact path={path} component={Home} />
 
