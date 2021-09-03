@@ -1,3 +1,4 @@
+*.js text eol=lf
 **/build
 .vscode/settings.json
 .vscode/**

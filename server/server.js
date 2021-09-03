@@ -11,9 +11,7 @@ const PORT = process.env.PORT || 3001
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost"
 const MONGOOSE_OPTIONS = {
   useNewUrlParser: true,
-  useCreateIndex: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
 }
 
 const app = express()

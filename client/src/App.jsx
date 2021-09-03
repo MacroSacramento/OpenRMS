@@ -1,13 +1,14 @@
 import React from 'react';
-import Header from './component/header';
-import styles from './styles/styles.module.scss';
+import EmployeeCreate from './components/employees/employee_new';
+import styles from './styles/styles.css';
 
 const app = () => {
-    return(
-        <div className={ styles.container }>
-            <div className={ styles.sidebar } />
-            <Header />
-        </div>
+    return (
+        <>
+            <div className="flex justify-center w-full h-screen">
+                <EmployeeCreate />
+            </div>
+        </>
     );
 };
 
