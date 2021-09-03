@@ -5,9 +5,7 @@ import styles from './styles/styles.css';
 const app = () => {
     return (
         <>
-            <div className="flex justify-center w-full h-screen">
-                <EmployeeCreate />
-            </div>
+            <EmployeeCreate />
         </>
     );
 };
