@@ -5,7 +5,9 @@ import styles from './styles/styles.css';
 const app = () => {
     return (
         <>
-            <EmployeeCreate />
+            <div className=" w-full h-screen">
+                <EmployeeCreate />
+            </div>
         </>
     );
 };
