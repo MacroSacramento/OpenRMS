@@ -1,41 +1,53 @@
-const passport = require('passport')
-const router = require('express').Router()
+const passport = require('passport');
+const router = require('express').Router();
+const userSchema = require('../../validation');
 
-let Employee = require('../../models/employee.model')
+const Employee = require('../../models/employee.model');
+const Joi = require('joi');
 
-passport.use(Employee.createStrategy())
-passport.serializeUser(Employee.serializeUser())
-passport.deserializeUser(Employee.deserializeUser())
+passport.use(Employee.createStrategy());
+passport.serializeUser(Employee.serializeUser());
+passport.deserializeUser(Employee.deserializeUser());
 
 router.route('/')
   .post((req, res) => {
-    const { 
-      username, 
-      name, 
-      email, 
-      phoneNumber, 
-      address, 
-      isManager, 
-      isAdmin, 
-      isActive 
-    } = req.body
-    const hireDate = new Date()
 
-    const employee = new Employee({
-      username,
-      name,
-      email,
-      phoneNumber,
-      address,
-      hireDate,
-      isManager,
-      isAdmin,
-      isActive
-    })
+    try {
+      const userValidation = userSchema.validate(req.body);
+      if(userValidation.error){
+        const errors = userValidation.error;
+        res.send(errors)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+    // const { 
+    //   username, 
+    //   name, 
+    //   email, 
+    //   phoneNumber, 
+    //   address, 
+    //   isManager, 
+    //   isAdmin, 
+    //   isActive 
+    // } = req.body
+    // const hireDate = new Date()
 
-    Employee.register(employee, req.body.password)
-      .then(() => res.json('Employee created'))
-      .catch(err => res.status(400).json('Error: ' + err))
+    // const employee = new Employee({
+    //   username,
+    //   name,
+    //   email,
+    //   phoneNumber,
+    //   address,
+    //   hireDate,
+    //   isManager,
+    //   isAdmin,
+    //   isActive
+    // })
+
+    // Employee.register(employee, req.body.password)
+    //   .then(() => res.json('Employee created'))
+    //   .catch(err => res.status(400).json('Error: ' + err))
 
   })
 

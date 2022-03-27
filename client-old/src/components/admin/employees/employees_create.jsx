@@ -135,7 +135,7 @@ export default class CreateEmployee extends Component {
 
           <div className="form-group row">
             <div className="col-sm-1">
-              <input type="button" type="submit" value="Create Employee" className="btn btn-dark" />
+              <input type="submit" value="Create Employee" className="btn btn-dark" />
             </div>
           </div>
         </form>

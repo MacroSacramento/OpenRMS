@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
+import EmployeeCreate from './components/employees/employee_new';
 import FormGenerator from './components/form_generator';
+import styles from './styles/styles.css';
 
-const formEmployeeNew = [
+const EmployeeNewForm = [
     {
         formGroup: {
             name: "Personal Information",
@@ -33,18 +35,17 @@ const formEmployeeNew = [
                 }
             ]
         },
-        submitText: "Create Employee",
     }
 ];
 
 const app = () => {
     return (
         <>
-            <div>
-                <FormGenerator object={ formEmployeeNew } />
+            <div className=" w-full h-screen">
+                <FormGenerator object={EmployeeNewForm} />
             </div>
         </>
     );
 };
 
-export default app
+export default app;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 let FormGenerator = (object) => {
 
@@ -8,58 +8,51 @@ let FormGenerator = (object) => {
         return formInput.map((input, i) => {
             if (input.formGroup) return renderFormGroup(input.formGroup, i);
             if (input.inputGroup) return renderInputGroup(input.inputGroup, i);
-            return renderInput(input, inputs);
+            return renderInput(input, input.formGroup.inputs);
         })
     }
 
-    let renderFormGroup = (formGroup, i) => {
+    let renderFormGroup = (formGroup) => {
         return (
-            <>
-                <div className="flex flex-wrap w-full border-b-2 pb-2">
-                    <p key={i} className="font-semibold text-2xl">{formGroup.name}</p>
+            <div key={Math.random()*100}>
+                <div>
+                    <p>{formGroup.name}</p>
                 </div>
-                { GenerateForm(formGroup.inputs) }
-            </>
+                {GenerateForm(formGroup.inputs)}
+            </div>
         );
     }
 
-    let renderInputGroup = (inputGroup, i) => {
+    let renderInputGroup = (inputGroup) => {
         return inputGroup.map((input, i) => {
             return renderInput(input, inputGroup.length, i);
         })
     }
 
-    let renderInput = (input, length, i) => {
-        let conSel = () => {
-            if (length > 1) {
-                return (i == 0) ? "w-full md:w-1/2 px-3 mb-6 md:mb-0" : "w-full md:w-1/2 px-3"
-            } else return "w-full px-3 mb-6 md:mb-0"
-        }
-
+    let renderInput = (input) => {
         return (
-            <>
-                <div className={conSel() + " pt-5"}>
-                    <label
-                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                        htmlFor={input.id}>
-                        {input.label}
-                    </label>
-                    <input
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id={input.id}
-                        type={input.type}
-                        placeholder={input.placeholder} />
-                </div>
-            </>
+            <div key={Math.random()*100}>
+                <label
+                    htmlFor={input.id}>
+                    {input.label}
+                </label>
+                <input
+                    id={input.id}
+                    type={input.type}
+                    placeholder={input.placeholder} />
+            </div>
         )
     }
 
+
+    let formSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return (
-        <>
-            <form className="container w-full flex flex-wrap appearance-none md:px-72">
-                {GenerateForm(formObject)}
-            </form>
-        </>
+        <form onSubmit={formSubmit}>
+            {GenerateForm(formObject)}
+        </form>
     )
 
 };
