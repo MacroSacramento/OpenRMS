@@ -16,7 +16,7 @@
     "express-basic-auth": "^1.2.0",
     "express-session": "^1.17.0",
     "joi": "^17.6.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.0.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
